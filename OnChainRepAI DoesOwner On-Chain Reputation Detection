@@ -8,3 +8,4 @@ Blockchain explorers & enriched data
 Project metrics & rug-pull detectors
 Analysis Engine — Custom scoring logic + LLM reasoning.
 Output — Markdown report + JSON for downstream use
+Build your Build your MVP as Standalone Python Script with langchain/langgraph Skelton.
