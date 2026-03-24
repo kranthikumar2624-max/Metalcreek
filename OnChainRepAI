@@ -1,0 +1,62 @@
+onchainrepai/
+├── main.py                 # entry point
+├── agent.py                # LangChain/LangGraph agent
+├── tools/                  # all your API wrappers
+│   ├── wallet_analyzer.py
+│   ├── project_analyzer.py
+│   ├── combined_mode.py
+├── core/                   # scoring logic + report builder
+├── config.py               # API keys + model selection
+├── output/                 # markdown + JSON
+└── requirements.txt
+
+Use Poetry for clean dependency management
+Next Step:
+Choose & Set Up the LLM Core (Today)Best for speed right now: Grok-4 (via xAI API) or Claude 3.5 Sonnet (via Anthropic).
+Why? Both have excellent tool-calling and long context.
+Add to config.py:
+Python: LLM_PROVIDER = "grok"          # or "anthropic", "openai"
+MODEL = "grok-beta"            # or "claude-3-5-sonnet-20241022"
+Use LangChain/LangGraph from day 1 — it will make switching models trivial later.
+Next Step:
+Build the Tools Layer (Next 2–3 Days) — This is the real next step
+You need parallel-capable tools. Start with these 6 (prioritized):
+The basic Details which are crucial to build this are  Wallet basic data, Etherscan / Blockscout / Basescan API (API/Source) helps to get tx history, Age and balance
+Enriched reputation - Chainalysis KYT (or free Nansen/Arkham if you have credits), or public labels (Dune + Zerion) - mixer, sanctions, known rugs
+DeFi interactions - DeBank API or Zapper + Covalent - protocol usage, PnL
+Project metrics, DeFiLlama API + Dune Analytics, TVL, revenue, activity
+Rug-pull / honeypot check, Honeypot.is API + RugCheck.xyz + TokenSniffer, instant red flags
+Combined mode, Simple wallet → all contracts it interacted with → batch analyze your killer feature
+Start implementing only tools 1, 3, and 5 first. That already gives you 80% of the value.
+Next Step
+Implement the Analysis Engine (Day 4–5)
+Simple weighted scoring system (you can make it smarter later):Wallet Age (10%)
+Interaction diversity (20%)
+Red-flag links (–40% each)
+PnL consistency (15%)
+Project success rate (if combined mode)
+Let the LLM do the final synthesis + natural-language explanation.
+Next Step
+Immediate Action Plan (Next 48 Hours)
+Create the repo + skeleton (use my structure above)
+Get API keys for: Etherscan, DeBank, Honeypot.is, DeFiLlama (all free tiers are enough for MVP)
+Implement the first tool: wallet_basic_info(address: str) → dict
+Create a simple main.py that takes a wallet address and prints a report
+Test with 3 wallets: one obvious good (vitalik.eth), one obvious bad (known rug), one random
+Once the script works end-to-end for a single wallet, we’ll move to:Combined mode
+LangGraph stateful agent (with memory)
+Streamlit web UI 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
