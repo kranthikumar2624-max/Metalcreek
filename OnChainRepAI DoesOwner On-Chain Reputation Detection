@@ -1,0 +1,10 @@
+What OnChainRepAI DoesOwner On-Chain Reputation Detection: Analyzes any wallet address (or ENS/Basename) and outputs a reputation score + detailed risk/profile summary (transaction history, activity patterns, DeFi interactions, red flags like mixer/sanction links, wallet age, PnL, etc.).
+Project Success/Failure Analysis: Given a project name, token contract, or DEX pool, it evaluates if the project is successful (TVL growth, revenue, user activity) or a failure (rug pull risk, liquidity drain, honeypot, abandoned, etc.).
+Combined Mode: Feed a wallet → see all projects the owner was involved in + their success/failure track record.
+Output format: Natural language report + structured JSON (score, risk level, evidence, recommendations).
+The agent is modular, uses real public/commercial APIs, and can run as a standalone Python script, LangChain/LangGraph agent, or web app (Streamlit/FastAPI).Core ArchitectureLLM Core — Any modern model with tool-calling (Grok, GPT-4o, Claude 3.5, Llama 3.1 70B, etc.). The LLM decides which tools to call and synthesizes the final report.
+Tools Layer (parallel calls for speed):Wallet data & reputation APIs
+Blockchain explorers & enriched data
+Project metrics & rug-pull detectors
+Analysis Engine — Custom scoring logic + LLM reasoning.
+Output — Markdown report + JSON for downstream use
